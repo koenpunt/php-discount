@@ -72,17 +72,23 @@ bool(false)
  <li><a href="#header.2">header 2</a></li>
 </ul>
 
-<h1 id="header.1">header 1</h1>
+<a name="header.1"></a>
+<h1>header 1</h1>
 
-<h2 id="header.1.1">header 1.1</h2>
+<a name="header.1.1"></a>
+<h2>header 1.1</h2>
 
-<h3 id="header.1.1.1">header 1.1.1</h3>
+<a name="header.1.1.1"></a>
+<h3>header 1.1.1</h3>
 
-<h3 id="header.1.1.2">header 1.1.2</h3>
+<a name="header.1.1.2"></a>
+<h3>header 1.1.2</h3>
 
-<h2 id="header.1.2">header 1.2</h2>
+<a name="header.1.2"></a>
+<h2>header 1.2</h2>
 
-<h1 id="header.2">header 2</h1>
+<a name="header.2"></a>
+<h1>header 2</h1>
 
 <p>buga buga</p>
 
