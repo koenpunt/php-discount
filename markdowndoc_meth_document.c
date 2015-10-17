@@ -57,7 +57,7 @@ PHP_METHOD(markdowndoc, getHtml)
 		RETURN_FALSE;
 	}
 	assert(data != NULL);
-	RETURN_STRINGL(data, status, 1);
+	RETURN_STRING(data, 1); /* must dup */
 	// TODO: free data?
 	// RETVAL_STRINGL(data, status, 1);
 	// efree(data);

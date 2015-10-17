@@ -139,7 +139,8 @@ PHP_METHOD(markdowndoc, transformFragment)
 			"Error parsing the fragment", 0 TSRMLS_CC);
 		RETVAL_FALSE;
 	} else {
-		RETVAL_STRINGL(out, out_len, 0);
+		RETVAL_STRING(out, 1);
+		// RETVAL_STRINGL(out, out_len, 1);
 	}
 
 	if (Z_TYPE_P(return_value) == IS_BOOL && out != NULL) {
