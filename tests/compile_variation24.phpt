@@ -1,8 +1,7 @@
 --TEST--
-Compile-time options: check WITH_GITHUB_TAGS effect
+MarkdownDocument::compile: test GITHUBTAGS flag
 --SKIPIF--
 <?php
-die('SKIP WITH_GITHUB_TAGS compile time option is not applicable');
 if (!extension_loaded('discount'))
 	die('SKIP discount extension not loaded');
 --FILE--
@@ -12,7 +11,7 @@ Test <_arghfoo_bar>
 EOD;
 
 $md = MarkdownDocument::createFromString($t);
-$md->compile();
+$md->compile(MarkdownDocument::GITHUBTAGS);
 echo $md->getHtml();
 
 echo "\nDone.\n";

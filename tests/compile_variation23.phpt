@@ -1,8 +1,7 @@
 --TEST--
-Compile-time options: check WITH_FENCED_CODE effect
+MarkdownDocument::compile: test FENCEDCODE flag
 --SKIPIF--
 <?php
-die('SKIP WITH_FENCED_CODE compile time option is not applicable');
 if (!extension_loaded('discount'))
 	die('SKIP discount extension not loaded');
 --FILE--
@@ -27,7 +26,7 @@ Foo bar
 EOD;
 
 $md = MarkdownDocument::createFromString($t);
-$md->compile();
+$md->compile(MarkdownDocument::FENCEDCODE);
 echo $md->getHtml();
 
 echo "\nDone.\n";
@@ -39,7 +38,7 @@ echo "\nDone.\n";
 Foo bar
 </code></pre>
 
-<pre><code># H1
+<pre><code class="md"># H1
 ## H2
 ### H3
 #### H4
