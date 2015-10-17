@@ -443,12 +443,12 @@ class MarkdownDocument {
 	 */
 	const NOSTYLE			= 0x00400000;
 
-	// const NODLDISCOUNT     = 0x00800000;
-	// const DLEXTRA          = 0x01000000;
-	// const FENCEDCODE       = 0x02000000;
-	// const IDANCHOR         = 0x04000000;
-	// const GITHUBTAGS       = 0x08000000;
-	// const URLENCODEDANCHOR = 0x10000000;
+	const NODLDISCOUNT     = 0x00800000;
+	const DLEXTRA          = 0x01000000;
+	const FENCEDCODE       = 0x02000000;
+	const IDANCHOR         = 0x04000000;
+	const GITHUBTAGS       = 0x08000000;
+	const URLENCODEDANCHOR = 0x10000000;
 
 	/**
 	 * Creates a {@link MarkdownDocument} from a stream.

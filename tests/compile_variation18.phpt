@@ -19,13 +19,13 @@ Orange
 EOD;
 
 $md = MarkdownDocument::createFromString($t);
-$md->compile();
+$md->compile(MarkdownDocument::DLEXTRA);
 echo $md->getHtml(), "\n\n";
 
 echo "=====================\n";
 
 $md = MarkdownDocument::createFromString($t);
-$md->compile(MarkdownDocument::NODLIST);
+$md->compile(MarkdownDocument::DLEXTRA | MarkdownDocument::NODLIST);
 echo $md->getHtml(), "\n\n";
 
 echo "\nDone.\n";
