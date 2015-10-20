@@ -19,7 +19,7 @@ Orange
 EOD;
 
 $md = MarkdownDocument::createFromString($t);
-$md->compile();
+$md->compile(MarkdownDocument::DLEXTRA);
 echo $md->getHtml(), "\n\n";
 
 /* deactivated: */
