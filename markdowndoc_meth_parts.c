@@ -48,7 +48,7 @@ PHP_METHOD(markdowndoc, getToc)
 	if ((dobj = markdowndoc_get_object(getThis(), 1 TSRMLS_CC)) == NULL) {
 		RETURN_FALSE;
 	}
-	
+
 	status = mkd_toc(dobj->markdoc, &data);
 	if (status < 0) {
 		/* no doc->ctx, shouldn't happen */
@@ -56,10 +56,10 @@ PHP_METHOD(markdowndoc, getToc)
 			"Call to library function mkd_toc() failed (should not happen!)");
 		RETURN_FALSE;
 	}
-	/* status == 0 can indicate either empty string or no MKD_TOC, we
-	 * must use data to disambiguate */
-	if (data == NULL) {
-		RETURN_FALSE; /* no MKD_TOC */
+
+	// TODO Differentiate between MKD_TOC being not set or a empty TOC
+	if (status == 0) {
+		RETURN_FALSE;
 	}
 	/* empty string included in general case */
 	RETURN_STRING(data, 1); /* must dup */

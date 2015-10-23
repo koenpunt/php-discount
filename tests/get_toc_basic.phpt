@@ -55,6 +55,6 @@ echo "\nDone.\n";
 bool(false)
 
 ======
-string(0) ""
+bool(false)
 
 Done.
