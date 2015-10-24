@@ -62,7 +62,12 @@ PHP_METHOD(markdowndoc, getToc)
 		RETURN_FALSE; /* no MKD_TOC */
 	}
 	/* empty string included in general case */
-	RETURN_STRINGL(data, status, 0);	
+	RETURN_STRINGL(data, status, 1);
+	// TODO: free data?
+	// RETVAL_STRINGL(data, status, 1);
+	// efree(data);
+	// return;
+
 }
 /* }}} */
 
@@ -88,7 +93,12 @@ PHP_METHOD(markdowndoc, getCss)
 		RETURN_FALSE;
 	}
 	assert(data != NULL);
-	RETURN_STRINGL(data, status, 0);	
+	RETURN_STRINGL(data, status, 1);
+	// TODO: free data?
+	// RETVAL_STRINGL(data, status, 1);
+	// efree(data);
+	// return;
+	
 }
 /* }}} */
 

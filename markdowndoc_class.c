@@ -157,6 +157,7 @@ static zend_object_value ce_create_object(zend_class_entry *class_type TSRMLS_DC
 #endif
 
 	dobj->markdoc		= NULL;
+	dobj->markdoc_compiled = 0;
 	dobj->in_callback	= 0;
 	dobj->url_fci		= NULL;
 	dobj->url_fcc		= NULL;
@@ -209,7 +210,7 @@ discount_object* markdowndoc_get_object(zval *zobj, int require_compiled TSRMLS_
 		return NULL;
 	}
 
-	if (require_compiled && !mkd_is_compiled(dobj->markdoc)) {
+	if (require_compiled && !dobj->markdoc_compiled) {
 		zend_throw_exception_ex(spl_ce_LogicException, 0 TSRMLS_CC,
 			"Invalid state: the markdown document has not been compiled");
 		return NULL;
@@ -404,6 +405,14 @@ void markdowndoc_module_start(INIT_FUNC_ARGS)
 	DISCOUNT_CONST(EMBED);
 	DISCOUNT_CONST(EXTRA_FOOTNOTE);
 	DISCOUNT_CONST(NOSTYLE);
+	/*
+	DISCOUNT_CONST(NODLDISCOUNT)
+	DISCOUNT_CONST(DLEXTRA)
+	DISCOUNT_CONST(FENCEDCODE)
+	DISCOUNT_CONST(IDANCHOR)
+	DISCOUNT_CONST(GITHUBTAGS)
+	DISCOUNT_CONST(URLENCODEDANCHOR)
+	*/
 
 #undef DISCOUNT_CONST
 }

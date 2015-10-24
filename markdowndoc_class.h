@@ -27,11 +27,12 @@
 
 /* $Id: 7e2598a512a323a95d72ea239c9596ca88f4d5b8 $ */
 
-#include "lib/mkdio.h"
+#include <mkdio.h>
 
 typedef struct discount_object {
-    zend_object				std;
-    MMIOT					*markdoc;
+	zend_object				std;
+	MMIOT					*markdoc;
+	int						markdoc_compiled;
 	int						in_callback;
 	zend_fcall_info			*url_fci;
 	zend_fcall_info_cache	*url_fcc;

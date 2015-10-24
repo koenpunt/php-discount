@@ -57,7 +57,11 @@ PHP_METHOD(markdowndoc, getHtml)
 		RETURN_FALSE;
 	}
 	assert(data != NULL);
-	RETURN_STRINGL(data, status, 0);	
+	RETURN_STRINGL(data, status, 1);
+	// TODO: free data?
+	// RETVAL_STRINGL(data, status, 1);
+	// efree(data);
+	// return;
 }
 /* }}} */
 
@@ -112,7 +116,7 @@ PHP_METHOD(markdowndoc, writeXhtmlPage)
 		RETURN_FALSE;
 	}
 	
-	status = mkd_xhtmlpage(dobj->markdoc, f);
+	status = mkd_xhtmlpage(dobj->markdoc, 0, f);
 	markdown_sync_stream_and_file(stream, close, f TSRMLS_CC);
 
 	if (markdown_handle_io_error(status, "mkd_xhtmlpage" TSRMLS_CC) == FAILURE) {

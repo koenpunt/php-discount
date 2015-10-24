@@ -31,8 +31,6 @@
 #include <ext/standard/info.h>
 
 #include "php_discount.h"
-#include "lib/mkdio.h"
-#include "lib/tags.h"
 
 #include "markdowndoc_class.h"
 
@@ -73,7 +71,7 @@ static void ZEND_MODULE_GLOBALS_DTOR_N(discount)(void *arg TSRMLS_DC) /* {{{ */
 ZEND_MODULE_STARTUP_D(discount)
 {
 	markdowndoc_module_start(INIT_FUNC_ARGS_PASSTHRU);
-	mkd_tags_on_startup(INIT_FUNC_ARGS_PASSTHRU);
+	// mkd_tags_on_startup(INIT_FUNC_ARGS_PASSTHRU);
 
 	return SUCCESS;
 }
@@ -83,7 +81,7 @@ ZEND_MODULE_STARTUP_D(discount)
 ZEND_MODULE_SHUTDOWN_D(discount)
 {
 	markdowndoc_module_start(SHUTDOWN_FUNC_ARGS_PASSTHRU);
-	mkd_tags_on_shutdown(SHUTDOWN_FUNC_ARGS_PASSTHRU);
+	// mkd_tags_on_shutdown(SHUTDOWN_FUNC_ARGS_PASSTHRU);
 
 	return SUCCESS;
 }

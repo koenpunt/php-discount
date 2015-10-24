@@ -48,14 +48,14 @@ PHP_METHOD(markdowndoc, compile)
 	if ((dobj = markdowndoc_get_object(getThis(), 0 TSRMLS_CC)) == NULL) {
 		RETURN_FALSE;
 	}
-	if (mkd_is_compiled(dobj->markdoc)) {
+	if (dobj->markdoc_compiled) {
 		zend_throw_exception_ex(spl_ce_LogicException, 0 TSRMLS_CC,
 			"Invalid state: the markdown document has already been compiled");
 		RETURN_FALSE;
 	}
 
 	/* always returns success (unless fed a null pointer) */
-	mkd_compile(dobj->markdoc, (mkd_flag_t) flags);
+	dobj->markdoc_compiled = mkd_compile(dobj->markdoc, (mkd_flag_t) flags);
 
 	RETURN_TRUE;
 }
@@ -73,7 +73,7 @@ PHP_METHOD(markdowndoc, isCompiled)
 		RETURN_FALSE;
 	}
 	
-	RETURN_BOOL(mkd_is_compiled(dobj->markdoc));
+	RETURN_BOOL(dobj->markdoc_compiled);
 }
 /* }}} */
 
@@ -100,7 +100,7 @@ PHP_METHOD(markdowndoc, dumpTree)
 		RETURN_FALSE;
 	}
 
-	status = mkd_dump(dobj->markdoc, f, title);
+	status = mkd_dump(dobj->markdoc, f, 0, title);
 
 	markdown_sync_stream_and_file(stream, close, f TSRMLS_CC);
 	
@@ -193,7 +193,8 @@ PHP_METHOD(markdowndoc, setReferencePrefix)
 	if ((dobj = markdowndoc_get_object(getThis(), 0 TSRMLS_CC)) == NULL) {
 		RETURN_FALSE;
 	}
-	if (mkd_is_compiled(dobj->markdoc)) {
+
+	if (dobj->markdoc_compiled) {
 		zend_throw_exception_ex(spl_ce_LogicException, 0 TSRMLS_CC,
 			"Invalid state: the markdown document has already been compiled");
 		RETURN_FALSE;
