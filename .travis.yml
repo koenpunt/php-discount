@@ -9,8 +9,10 @@ sudo: false
 env:
   - REPORT_EXIT_STATUS=1 NO_INTERACTION=1
 install:
+  - mkdir -p $HOME/libdiscount
+  - curl -L https://koen.s3-eu-west-1.amazonaws.com/discount.tgz | tar -xz -C $HOME/libdiscount
   - phpize
-  - CFLAGS="-Wall -fno-strict-aliasing" ./configure --with-discount
+  - CFLAGS="-Wall -fno-strict-aliasing" ./configure --with-discount=$HOME/libdiscount
   - make all
 script: TEST_PHP_EXECUTABLE=$(which php) php -n
     -d open_basedir= -d output_buffering=0 -d memory_limit=-1
